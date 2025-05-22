@@ -2,6 +2,10 @@
 
 A modern travel packing list application built with React and Vite. Easily manage items you need for your trips with a clean, intuitive interface.
 
+## 🌐 Live Demo
+
+Check out the live application: [https://lite-list.netlify.app/](https://lite-list.netlify.app/)
+
 ## ✨ Features
 
 - Add items with quantities to your packing list
