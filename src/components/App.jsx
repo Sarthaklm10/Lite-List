@@ -1,21 +1,26 @@
 import { useState } from "react";
-import Logo from "./Logo";
-import Form from "./Form";
-import PackingList from "./PackingList";
-import Stats from "./Stats";
+import Logo from "./Logo.jsx";
+import Form from "./Form.jsx";
+import PackingList from "./PackingList.jsx";
+import Stats from "./Stats.jsx";
 
 export default function App() {
   const [items, setItems] = useState([]);
 
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
-    console.log(item);
   }
 
   function handleDeleleItem(id) {
-    const [itm] = items.filter((item) => item.id === id);
-    console.log("DELETING product", itm.description);
-    setItems(() => items.filter((elt) => elt.id !== id));
+    const element = document.querySelector(`[data-id="${id}"]`);
+    if (element) {
+      element.classList.add("removing");
+      setTimeout(() => {
+        setItems(() => items.filter((elt) => elt.id !== id));
+      }, 300);
+    } else {
+      setItems(() => items.filter((elt) => elt.id !== id));
+    }
   }
 
   function handleToggleItem(id) {
@@ -24,14 +29,12 @@ export default function App() {
         item.id === id ? { ...item, packed: !item.packed } : item
       )
     );
-    console.log("onToggleItem running...");
   }
 
   function handleClearList() {
     const confirmed = window.confirm(
       "ARE YOU SURE YOU WANT TO CLEAR THE LIST ?"
     );
-    console.log("Clearing List");
     if (confirmed) setItems([]);
   }
 
